@@ -1,0 +1,20 @@
+config:
+  target: "http://localhost:5000"
+  phases:
+    - name: "Warm up"
+      duration: 15
+      arrivalRate: 5
+    - name: "Load"
+      duration: 30
+      arrivalRate: 20
+  defaults:
+    headers:
+      Accept: "application/json"
+
+scenarios:
+  - name: "Basic browse"
+    flow:
+      - get:
+          url: "/api/health"
+      - get:
+          url: "/api/events"
